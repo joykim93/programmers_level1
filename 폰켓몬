@@ -1,0 +1,28 @@
+## 폰켓몬
+## 문제 설명
+
+## 문제 url: https://programmers.co.kr/learn/courses/30/lessons/1845
+
+## 제한조건
+## 1) nums는 폰켓몬의 종류 번호가 담긴 1차원 배열입니다
+## 2) nums의 길이(N)는 1 이상 10,000 이하의 자연수이며, 항상 짝수로 주어집니다
+## 3) 폰켓몬의 종류 번호는 1 이상 200,000 이하의 자연수로 나타냅니다
+## 4) 가장 많은 종류의 폰켓몬을 선택하는 방법이 여러 가지인 경우에도, 선택할 수 있는 폰켓몬 종류 개수의 최댓값 하나만 return 하면 됩니다
+
+## 입출력 예시
+## 1) nums = [3, 1, 2, 3], result = 2
+## 2) nums = [3, 3, 3, 2, 2, 4], result = 3
+## 3) nums = [3, 3, 3, 2, 2, 2], result = 2
+
+function solution(nums) {
+    
+    // nums.length는 항상 짝수이다.
+    let half = nums.length / 2
+    // 배열 nums 요소에서 중복된 값을 제거한, 새로운 배열 filterNums
+    let filterNums = nums.filter((el, idx) => {
+        return nums.indexOf(el) === idx
+    })
+    
+    // half, filterNums.length 둘 중 작거나 같은 값을 return
+    return half > filterNums.length ? filterNums.length : half
+}
