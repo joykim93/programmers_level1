@@ -1,0 +1,31 @@
+## 신고 결과 받기
+## 문제 url: https://programmers.co.kr/learn/courses/30/lessons/92334
+
+function solution(id_list, report, k) {
+    // id_list 길이만큼 배열 생성
+    let answer = new Array(id_list.length).fill(0);  
+    
+    let obj = {}
+    
+    id_list.map((user) => {
+        obj[user] = [];
+    })
+    
+    // 피신고자를 기준으로 신고한 사람을 넣는다
+    report.map((users) => {
+        // 신고자, 피신고자
+        const [reporter, blacklist] = users.split(' ');
+        // 이미 신고자(reporter)를 고려한 경우 skip
+        if(!obj[blacklist].includes(reporter)) obj[blacklist].push(reporter)
+    })
+    
+    for(key in obj) {
+        if(obj[key].length >= k) {
+            obj[key].map((user) => {
+                answer[id_list.indexOf(user)] = answer[id_list.indexOf(user)] + 1;
+            })
+        }
+    }
+    
+    return answer;
+}
