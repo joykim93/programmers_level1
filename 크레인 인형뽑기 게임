@@ -1,0 +1,43 @@
+## 크레인 인형뽑기 게임
+## 문제 url: https://programmers.co.kr/learn/courses/30/lessons/64061
+
+function solution(board, moves) {
+    
+    // 터진 인형의 개수를 세어줄 변수 cnt 선언
+    let cnt = 0
+
+    // 인형을 담을 바구니
+    let basket = []
+
+    while(moves.length > 0) {
+
+    // moves 맨 앞요소부터 하나씩 제거해준다
+    let head = moves.shift()
+    
+    for(let i = 0; i < board.length; i++) {
+        // 만약 head-1 열 중에 0이 아닌 숫자가 존재하는 경우
+        if(board[i][head-1] !== 0) {
+            // 바구니에 그 숫자를 담은 후 해당 요소에 0을 할당한다.
+            // for문을 끝낸다
+            basket.push(board[i][head-1])
+            board[i][head-1] = 0
+            break;
+        }
+     }
+    
+    // 만약 바구니에 담겨있는 숫자의 개수가 2개 이상일 경우
+    if(basket.length >= 2) {
+        let len = basket.length
+        // 만약 바구니 맨 끝에 있는 숫자와 맨 끝 옆에 있는 수자가 같다면
+        // 두 숫자는 터지고 (바구니에서 제거하고), 터진 인형수를 세어준다 (cnt += 2)
+        if(basket[len-1] === basket[len-2]) {
+            basket.pop()
+            basket.pop()
+            cnt = cnt + 2
+        }
+     }
+
+    }
+
+    return cnt
+}
