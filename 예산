@@ -1,0 +1,31 @@
+## 예산
+
+## 문제 url: https://programmers.co.kr/learn/courses/30/lessons/12982
+
+function solution(d, budget) {
+    
+    // d를 오름차순으로 정렬
+    d.sort((a, b) => a - b)
+    
+    let result = 0
+    
+    // budget이 0이 되거나, 음수가 되면 while문을 빠져나온다.
+    // 혹은, d의 length가 0이면 while문을 빠져나온다.
+    while(budget !== 0 && budget > 0 && d.length !== 0) {
+        
+        let head = d.shift()
+        
+        // head가 budget보다 작거나 같다면
+        if(head <= budget) {
+            // result는 +1
+            result++
+            // budget를 head만큼 뺀다
+            budget = budget - head
+        }
+        
+    }
+    
+    // budget이 음수이면 result-1를 return
+    // 그외의 case는 result를 return
+    return budget < 0 ? result - 1 : result    
+}
