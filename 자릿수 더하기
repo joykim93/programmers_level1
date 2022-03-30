@@ -1,0 +1,20 @@
+## 자릿수 더하기
+## 문제 url: https://programmers.co.kr/learn/courses/30/lessons/12931
+
+function solution(n)
+{
+    var answer = 0;
+
+    // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+   // console.log('Hello Javascript')
+    
+    // n의 자리수
+    let numLength = n.toString().length 
+    
+    for(let i = numLength; i > 0; i--) {
+        let number = parseInt((n % (Math.pow(10, i))) / (Math.pow(10, (i-1))))
+        answer = answer + number
+    }
+
+    return answer;
+}
